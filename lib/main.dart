@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
+import 'pages/container.dart';
+import 'pages/retos_container.dart';
 
 void main() {
   runApp(const MyApp());
@@ -116,6 +118,16 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          FloatingActionButton(
+            heroTag: 'Container',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const RetosContainer()),
+              );
+            },
+            child: const Icon(Icons.home),
+          ),
           FloatingActionButton(
             heroTag: 'home',
             onPressed: () {
