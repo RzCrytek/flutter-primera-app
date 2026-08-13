@@ -1,7 +1,8 @@
+import 'package:appcontadores/pages/contadores.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: Contadores()));
 }
 
 class MyApp extends StatelessWidget {
