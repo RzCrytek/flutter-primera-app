@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:secondapp/pages/dice_page.dart';
+import 'package:secondapp/pages/statefull_page.dart';
+import 'package:secondapp/pages/stateless_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: DicePage()));
 }
 
 class MyApp extends StatelessWidget {
