@@ -64,8 +64,14 @@ class HomePage extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.network(
-                    "https://picsum.photos/200/300",
+                  // Image.network(
+                  //   "https://picsum.photos/200/300",
+                  //   width: 150,
+                  //   height: 150,
+                  //   fit: BoxFit.cover,
+                  // ),
+                  Image.asset(
+                    'assets/images/peru.png',
                     width: 150,
                     height: 150,
                     fit: BoxFit.cover,
