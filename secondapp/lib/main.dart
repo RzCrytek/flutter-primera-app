@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:secondapp/pages/dice_page.dart';
+import 'package:secondapp/pages/favorite_deports_page.dart';
+import 'package:secondapp/pages/menu_page.dart';
 import 'package:secondapp/pages/statefull_page.dart';
 import 'package:secondapp/pages/stateless_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: DicePage()));
+  runApp(MaterialApp(home: FavoriteDeportsPage()));
 }
 
 class MyApp extends StatelessWidget {
