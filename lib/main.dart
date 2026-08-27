@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyectos/pages/quiz_super_heroe.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: QuizSuperHeroe()));
 }
 
 class MyApp extends StatelessWidget {
