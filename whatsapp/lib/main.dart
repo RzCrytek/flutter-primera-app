@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp/pages/whatsapp_home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: WhatsappHome(), debugShowCheckedModeBanner: false));
 }
 
 class MyApp extends StatelessWidget {
