@@ -12,6 +12,7 @@ class _QuizSuperHeroeState extends State<QuizSuperHeroe> {
   Quizbrain quizbrain = Quizbrain();
 
   bool? respuestaCorrecta;
+  int? numeroPreguntaRespondida;
 
   List<Color> colors = [
     const Color(0xFF5B4B9E), // morado
@@ -24,23 +25,19 @@ class _QuizSuperHeroeState extends State<QuizSuperHeroe> {
     bool correct = quizbrain.checkAnswer(userAnswer);
 
     setState(() {
+      numeroPreguntaRespondida = quizbrain.getQuestionNumber();
       respuestaCorrecta = correct;
-    });
 
-    if (quizbrain.questionIndex < quizbrain.questionList.length - 1) {
-      setState(() {
+      if (quizbrain.questionIndex < quizbrain.questionList.length - 1) {
         quizbrain.nextQuestion();
-        respuestaCorrecta = null;
-      });
-    }
+      }
+    });
   }
 
   Widget answerButton(int index) {
     return Expanded(
       child: ElevatedButton(
-        onPressed: respuestaCorrecta == null
-            ? () => checkAnswer(quizbrain.getOptions()[index])
-            : null,
+        onPressed: () => checkAnswer(quizbrain.getOptions()[index]),
         style: ElevatedButton.styleFrom(
           backgroundColor: colors[index],
           foregroundColor: Colors.white,
@@ -66,11 +63,9 @@ class _QuizSuperHeroeState extends State<QuizSuperHeroe> {
         title: const Text('Quiz de Superhéroes'),
         centerTitle: true,
       ),
-
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(12),
-
           child: Column(
             children: [
               // PREGUNTA
@@ -134,29 +129,13 @@ class _QuizSuperHeroeState extends State<QuizSuperHeroe> {
 
               const SizedBox(height: 8),
 
-              // Container(
-              //   width: double.infinity,
-              //   color: Colors.amber,
-              //   alignment: Alignment.center,
-              //   padding: const EdgeInsets.symmetric(vertical: 8),
-              //   child: Text(
-              //     '1 - Correcto',
-              //     style: TextStyle(
-              //       fontSize: 18,
-              //       fontWeight: FontWeight.bold,
-              //       color: Colors.green,
-              //     ),
-              //   ),
-              // ),
-
-              // RESULTADO
               if (respuestaCorrecta != null)
                 Container(
                   width: double.infinity,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: Text(
-                    '${quizbrain.getQuestionNumber()} - '
+                    '$numeroPreguntaRespondida - '
                     '${respuestaCorrecta! ? "Correcto" : "Incorrecto"}',
                     style: TextStyle(
                       fontSize: 18,
