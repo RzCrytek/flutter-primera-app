@@ -20,6 +20,46 @@ class _HomePageState extends State<HomePage> {
       respuestaCorrecta = false;
     }
 
+    if (quizbrain.isFinished) {
+      print('el cuestionario a terminado');
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              children: [
+                Icon(Icons.warning, color: Colors.orange),
+                Text("Alerta"),
+              ],
+            ),
+            content: Text("Has llegado al final del cuestionario"),
+            actions: [
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.cyan,
+                  foregroundColor: Colors.white,
+                  elevation: 15,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadiusGeometry.circular(5),
+                    side: BorderSide(color: Colors.blue, width: 2),
+                  ),
+                ),
+                onPressed: () {
+                  quizbrain.restarQuizz();
+                  Navigator.pop(context);
+
+                  setState(() {});
+                },
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      quizbrain.nextQuestion();
+    }
+
     quizbrain.nextQuestion();
     setState(() {});
   }
@@ -37,6 +77,38 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(24),
+              color: Colors.blue,
+              child: Row(
+                mainAxisAlignment: .spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      Text(
+                        'Hola Ivan',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "Bienvenido al cuestionario",
+                        style: TextStyle(fontSize: 16, color: Colors.white70),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.notifications, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
             Expanded(
               flex: 5,
               child: Center(

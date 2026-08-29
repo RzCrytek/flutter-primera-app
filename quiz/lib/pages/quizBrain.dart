@@ -2,6 +2,7 @@ import 'package:quiz/pages/models/question_model.dart';
 
 class Quizbrain {
   int questionIndex = 0;
+  bool isFinished = false;
 
   List<QuestionModel> questionList = [
     QuestionModel(question: "¿Lima es la capital del Perú?", answer: true),
@@ -55,6 +56,16 @@ class Quizbrain {
     } else {
       print("Se acabaron las preguntas");
       questionIndex = 0;
+      isFinished = true;
     }
+  }
+
+  bool isFinishedHandle() {
+    return isFinished;
+  }
+
+  void restarQuizz() {
+    questionIndex = 0;
+    isFinished = false;
   }
 }
