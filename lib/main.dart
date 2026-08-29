@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:proyectos/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false));
 }
 
 class MyApp extends StatelessWidget {
