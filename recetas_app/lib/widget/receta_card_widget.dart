@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:recetas_app/models/receta_model.dart';
 
 class RecetaCardWidget extends StatelessWidget {
-  const RecetaCardWidget({super.key});
+  final RecetaModel recetaModel;
+  RecetaCardWidget({super.key, required this.recetaModel});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class RecetaCardWidget extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: Image.network(
-              "https://images.pexels.com/photos/18857730/pexels-photo-18857730.jpeg",
+              recetaModel.urlImage,
               height: size.height / 4,
               width: size.width * 0.8,
               fit: BoxFit.cover,
@@ -25,7 +27,7 @@ class RecetaCardWidget extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            "Wafles",
+            recetaModel.title,
             style: TextStyle(
               fontSize: 20,
               fontWeight: .bold,
@@ -33,11 +35,7 @@ class RecetaCardWidget extends StatelessWidget {
             ),
           ),
           Text(
-            """Primero agregamos la leche, huevos, azúcar, sal y esencia de vainilla en nuestra licuadora y mezclamos bien durante 2 minutos.
-Luego con un colador tamizamos la harina y el polvo de hornear. Luego los incluimos en la mezcla anterior y mezclamos hasta formar una pasta lisa y uniforme.
-Calentamos la waflera a la temperatura deseada y rociamos aceite en spray. Luego, colocamos la mezcla dentro y dejamos cocinar.
-Una vez listo, retirar el waffle, disponer sobre un plato y decorar con crema chantilly, frutillas, arándanos, hojas de menta y un generoso chorro de miel.
-¡A disfrutar!""",
+            recetaModel.preparation,
             maxLines: 3,
             style: TextStyle(
               color: Colors.white,

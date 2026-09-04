@@ -5,6 +5,7 @@ class FormItemWidget extends StatelessWidget {
   final IconData iconData;
   final String label;
   final int maxLines;
+  final String? Function(String?)? validator;
 
   FormItemWidget({
     super.key,
@@ -12,6 +13,7 @@ class FormItemWidget extends StatelessWidget {
     required this.iconData,
     required this.label,
     this.maxLines = 1,
+    required this.validator,
   });
 
   @override
@@ -44,6 +46,7 @@ class FormItemWidget extends StatelessWidget {
             borderRadius: .circular(25),
           ),
         ),
+        validator: validator,
         // validator: (value) {
         //   if (value == null || value.isEmpty) {
         //     return "Por favor ingresa el título de la receta";
