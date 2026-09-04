@@ -3,9 +3,7 @@ import 'package:recetas_app/examples/textformfield_page.dart';
 import 'package:recetas_app/pages/home_page.dart';
 
 void main() {
-  runApp(
-    MaterialApp(home: TextformfieldPage(), debugShowCheckedModeBanner: false),
-  );
+  runApp(MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false));
 }
 
 class MyApp extends StatelessWidget {
