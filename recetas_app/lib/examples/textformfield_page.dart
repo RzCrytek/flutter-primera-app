@@ -1,3 +1,4 @@
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 class TextformfieldPage extends StatelessWidget {
@@ -6,6 +7,19 @@ class TextformfieldPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+
+  void mostrarSnackBarArriba(BuildContext context) {
+    Flushbar(
+      title: "Error",
+      message: "Revisa las alertas del formulario",
+      duration: Duration(seconds: 2),
+      backgroundColor: Colors.red,
+      margin: EdgeInsets.all(8),
+      borderRadius: BorderRadius.circular(25),
+      icon: Icon(Icons.error, color: Colors.white),
+      flushbarPosition: FlushbarPosition.TOP,
+    ).show(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,13 +132,14 @@ class TextformfieldPage extends StatelessWidget {
                         ),
                       );
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Revisa las alertas del formulario"),
-                          backgroundColor: Colors.red,
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     content: Text("Revisa las alertas del formulario"),
+                      //     backgroundColor: Colors.red,
+                      //     duration: Duration(seconds: 2),
+                      //   ),
+                      // );
+                      mostrarSnackBarArriba(context);
                     }
                   },
                   child: Text("Enviar Formulario"),
