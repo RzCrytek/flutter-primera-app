@@ -8,8 +8,10 @@ class RecetaCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return Container(
       padding: EdgeInsets.all(24),
+      margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         color: Color(0xFF0F1E2b),
         borderRadius: BorderRadius.circular(25),
