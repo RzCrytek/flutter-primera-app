@@ -17,30 +17,43 @@ class ScroollPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("ScrollPage")),
       body: Center(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
-          // scrollDirection: Axis.horizontal, //trabajar el scroll en horizontal y colocar como hijo a un row
-          child: Column(
-            mainAxisAlignment: .center,
-            children: [
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-              _buildContainer("1"),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            Text("Cabecera 1"),
+            Text("Cabecera 1"),
+            Text("Cabecera 1"),
+            Text("Cabecera 1"),
+            Expanded(
+              child: SingleChildScrollView(
+                // scrollDirection: Axis.horizontal, //Scroll horizontal, funciona con un child Row
+                child: Column(
+                  children: [
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    _buildContainer("1"),
+                    ...List.generate(100, (index) {
+                      print(index);
+                      return _buildContainer(index.toString());
+                    }),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
