@@ -3,11 +3,29 @@ import 'package:recetas_app/examples/navigator_page.dart';
 import 'package:recetas_app/examples/scrooll_page.dart';
 import 'package:recetas_app/examples/textformfield_page.dart';
 import 'package:recetas_app/pages/home_page.dart';
+import 'package:recetas_app/routes/app_router.dart';
+
+// void main() {
+//   runApp(
+//     MaterialApp(home: NavigatorRoutesPage(), debugShowCheckedModeBanner: false),
+//   );
+// }
 
 void main() {
-  runApp(
-    MaterialApp(home: NavigatorRoutesPage(), debugShowCheckedModeBanner: false),
-  );
+  runApp(MyAppRouter());
+}
+
+class MyAppRouter extends StatelessWidget {
+  const MyAppRouter({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      title: "Clase GoRouter",
+      routerConfig: appRouter,
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {

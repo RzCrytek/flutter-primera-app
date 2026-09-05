@@ -57,9 +57,9 @@ class NavigatorPage extends StatelessWidget {
 }
 
 class DetallePage extends StatelessWidget {
-  String nombre;
+  final String nombre;
 
-  DetallePage({super.key, required this.nombre});
+  const DetallePage({super.key, required this.nombre});
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +104,8 @@ class NavigatorRoutesPage extends StatelessWidget {
               builder: (context) =>
                   DetallePage(nombre: arguments ?? "Sin nombre"),
             );
+          default:
+            return MaterialPageRoute(builder: (context) => const AboutPage());
         }
       },
     );
