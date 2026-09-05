@@ -18,6 +18,7 @@ class ListviewPage extends StatelessWidget {
       appBar: AppBar(title: Text("Listview Page")),
       body: Center(
         child: ListView.separated(
+          scrollDirection: Axis.horizontal,
           separatorBuilder: (context, index) =>
               Divider(thickness: 4, color: Colors.blueAccent),
           itemCount: 1000,
