@@ -5,7 +5,9 @@ import 'package:recetas_app/examples/textformfield_page.dart';
 import 'package:recetas_app/pages/home_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: NavigatorPage(), debugShowCheckedModeBanner: false));
+  runApp(
+    MaterialApp(home: NavigatorRoutesPage(), debugShowCheckedModeBanner: false),
+  );
 }
 
 class MyApp extends StatelessWidget {

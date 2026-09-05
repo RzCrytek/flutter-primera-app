@@ -64,7 +64,10 @@ class DetallePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Detalle Page"), leading: Container()),
+      appBar: AppBar(
+        title: Text("Detalle Page"),
+        //  leading: Container()
+      ),
       body: Center(
         child: Column(
           mainAxisSize: .min,
@@ -80,5 +83,72 @@ class DetallePage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class NavigatorRoutesPage extends StatelessWidget {
+  const NavigatorRoutesPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: "/",
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(builder: (context) => HomeNavigatorPage());
+          case '/detalle':
+            final arguments = settings.arguments as String?;
+            return MaterialPageRoute(
+              builder: (context) =>
+                  DetallePage(nombre: arguments ?? "Sin nombre"),
+            );
+        }
+      },
+    );
+  }
+}
+
+class HomeNavigatorPage extends StatelessWidget {
+  const HomeNavigatorPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Hoame Navigator Paage")),
+      body: Center(
+        child: Column(
+          mainAxisSize: .min,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                final result = await Navigator.pushNamed(
+                  context,
+                  "/detalle",
+                  arguments: "Hola desde Home",
+                );
+                // Al volver, mostramos resultado
+                if (context.mounted && result != null) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text("Resultado: $result")));
+                }
+              },
+              child: Text("Ir a detalle, pushnamed con argumentos"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(title: Text("About Page")));
   }
 }
