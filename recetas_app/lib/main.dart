@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:recetas_app/examples/navigator_page.dart';
 import 'package:recetas_app/examples/scrooll_page.dart';
 import 'package:recetas_app/examples/textformfield_page.dart';
 import 'package:recetas_app/pages/home_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: ScroollPage(), debugShowCheckedModeBanner: false));
+  runApp(MaterialApp(home: NavigatorPage(), debugShowCheckedModeBanner: false));
 }
 
 class MyApp extends StatelessWidget {
