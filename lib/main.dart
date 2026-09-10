@@ -1,7 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:proyectos/router/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const NavicuryApp());
+}
+
+class NavicuryApp extends StatelessWidget {
+  const NavicuryApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const primaryBlue = Color(0xFF14213D);
+
+    return MaterialApp.router(
+      title: 'Navicury',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: primaryBlue,
+          primary: primaryBlue,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF5F6F8),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: primaryBlue,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          centerTitle: true,
+        ),
+        fontFamily: 'Roboto',
+      ),
+      routerConfig: appRouter,
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
