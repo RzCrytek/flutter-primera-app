@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:recetas_app/examples/navigator_page.dart';
 import 'package:recetas_app/examples/scrooll_page.dart';
+import 'package:recetas_app/examples/sliver/sliver_home_page.dart';
 import 'package:recetas_app/examples/textformfield_page.dart';
 import 'package:recetas_app/pages/home_page.dart';
 import 'package:recetas_app/routes/app_router.dart';
 
-// void main() {
-//   runApp(
-//     MaterialApp(home: NavigatorRoutesPage(), debugShowCheckedModeBanner: false),
-//   );
-// }
-
 void main() {
-  runApp(MyAppRouter());
+  runApp(
+    MaterialApp(home: SliverHomePage(), debugShowCheckedModeBanner: false),
+  );
 }
+
+// void main() {
+//   runApp(MyAppRouter());
+// }
 
 class MyAppRouter extends StatelessWidget {
   const MyAppRouter({super.key});
