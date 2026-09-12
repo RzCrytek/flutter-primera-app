@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:future_app/pages/async_page.dart';
 import 'package:future_app/pages/home_page.dart';
+import 'package:future_app/pages/products_page.dart';
 
 void main() {
-  runApp(MaterialApp(home: AsyncPage(), debugShowCheckedModeBanner: false));
+  runApp(MaterialApp(home: ProductsPage(), debugShowCheckedModeBanner: false));
 }
 
 class MyApp extends StatelessWidget {
