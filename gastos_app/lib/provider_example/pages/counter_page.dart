@@ -16,6 +16,11 @@ class CounterPage extends StatelessWidget {
           FloatingActionButton(
             onPressed: () {
               context.read<CounterProvider>().increment();
+              // context.read<CounterProvider>().increment();
+              counterProvider.increment();
+              // No se usa de esta manera porque el botón
+              // NO necesita reconstruirse por el cambio del contador
+              // o sea el uso de notifylisteners
             },
             child: Icon(Icons.add),
           ),
