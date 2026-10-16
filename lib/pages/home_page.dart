@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyectos/services/user_mockapi_service.dart';
+import 'package:proyectos/widgets/forecast_item.dart';
 import 'package:proyectos/widgets/weather_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -61,6 +62,44 @@ class HomePage extends StatelessWidget {
                       WeatherItem(asset: "humidity"),
                       WeatherItem(asset: "cloud"),
                     ],
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              "Forecast Title",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 32,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 16),
+            SizedBox(
+              height: 158,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.fromLTRB(20, 0, 8, 8),
+                children: [
+                  ForecastItem(
+                    hour: "06:00",
+                    temperature: "5.6°C",
+                    image: "overcast",
+                  ),
+                  ForecastItem(
+                    hour: "07:00",
+                    temperature: "5.7°C",
+                    image: "overcast",
+                  ),
+                  ForecastItem(
+                    hour: "08:00",
+                    temperature: "5.8°C",
+                    image: "overcast",
+                  ),
+                  ForecastItem(
+                    hour: "09:00",
+                    temperature: "5.9°C",
+                    image: "overcast",
                   ),
                 ],
               ),
