@@ -72,35 +72,35 @@ class _RegisterModalWidgetState extends State<RegisterModalWidget> {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          Text("Registra tu pago", style: TextStyle(fontSize: 22)),
-          SizedBox(height: 12),
-          FieldWidget(
-            controller: _titleController,
-            hintText: "Ingresa el nombre del gasto",
-          ),
-          FieldWidget(
-            controller: _priceController,
-            hintText: "Ingresa el monto",
-          ),
-          FieldWidget(
-            controller: _dateController,
-            hintText: "Ingresa la fecha",
-            function: showSelectorFecha,
-          ),
-
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: types.map((e) => ItemTypeWidget(data: e)).toList(),
-          ),
-
-          SizedBox(height: 8),
-
-          _buildAddButton(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Registra tu pago", style: TextStyle(fontSize: 22)),
+            SizedBox(height: 12),
+            FieldWidget(
+              controller: _titleController,
+              hintText: "Ingresa el nombre del gasto",
+            ),
+            FieldWidget(
+              controller: _priceController,
+              hintText: "Ingresa el monto",
+            ),
+            FieldWidget(
+              controller: _dateController,
+              hintText: "Ingresa la fecha",
+              function: showSelectorFecha,
+            ),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              alignment: WrapAlignment.center,
+              children: types.map((e) => ItemTypeWidget(data: e)).toList(),
+            ),
+            SizedBox(height: 8),
+            _buildAddButton(),
+          ],
+        ),
       ),
     );
   }
