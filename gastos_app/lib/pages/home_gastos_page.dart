@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gastos_app/generated/l10n.dart';
+import 'package:gastos_app/main.dart';
 import 'package:gastos_app/widgets/register_modal_widget.dart';
 
 class HomeGastosPage extends StatefulWidget {
@@ -12,7 +14,6 @@ class _HomeGastosPageState extends State<HomeGastosPage> {
   void showRegisterModal() {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
       builder: (context) {
         return RegisterModalWidget();
       },
@@ -21,8 +22,27 @@ class _HomeGastosPageState extends State<HomeGastosPage> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = S.of(context);
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Resumen de gastos",
+            style: TextStyle(fontSize: 22, fontWeight: .bold),
+          ),
+          actions: [
+            PopupMenuButton<Locale>(
+              icon: Icon(Icons.language),
+              onSelected: (locale) {
+                MyApp.setLocale(context, locale);
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(value: Locale("es"), child: Text("Español")),
+                PopupMenuItem(value: Locale("en"), child: Text("English")),
+              ],
+            ),
+          ],
+        ),
         body: Stack(
           children: [
             Column(
@@ -70,9 +90,11 @@ class _HomeGastosPageState extends State<HomeGastosPage> {
                     child: Column(
                       children: [
                         Text(
-                          "Resumen de gastos",
+                          texts.appTitle,
                           style: TextStyle(fontSize: 22, fontWeight: .bold),
                         ),
+                        Text(S.of(context).welcome),
+                        Text(texts.helloAlguien("Jhonny Gallegos")),
                         Text(
                           "Gestiona tus gastos de la mejor forma",
                           style: TextStyle(color: Colors.grey),

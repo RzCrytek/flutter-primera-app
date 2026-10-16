@@ -64,6 +64,16 @@ class S {
   String get appTitle {
     return Intl.message('Expense App', name: 'appTitle', desc: '', args: []);
   }
+
+  /// `Hi, {name}`
+  String helloAlguien(Object name) {
+    return Intl.message(
+      'Hi, $name',
+      name: 'helloAlguien',
+      desc: '',
+      args: [name],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
