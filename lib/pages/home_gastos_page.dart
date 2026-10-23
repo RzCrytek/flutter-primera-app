@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:proyectos/database/db_helper_expenses.dart';
 import 'package:proyectos/generated/l10n.dart';
+import 'package:proyectos/models/expense_model.dart';
 import 'package:proyectos/main.dart';
 import 'package:proyectos/widgets/register_modal_widget.dart';
 
 class HomeGastosPage extends StatefulWidget {
-  HomeGastosPage({super.key});
+  const HomeGastosPage({super.key});
 
   @override
   State<HomeGastosPage> createState() => _HomeGastosPageState();
 }
 
 class _HomeGastosPageState extends State<HomeGastosPage> {
-  void showRegisterModal() {
-    showModalBottomSheet(
+  final _dbHelper = DbHelperExpenses();
+  late Future<List<Expense>> _expensesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _expensesFuture = _dbHelper.getExpenses();
+  }
+
+  Future<void> showRegisterModal() async {
+    final added = await showModalBottomSheet<bool>(
       context: context,
       isScrollControlled: true,
       builder: (context) {
-        return RegisterModalWidget();
+        return const RegisterModalWidget();
       },
     );
+    if (added == true && mounted) {
+      setState(() {
+        _expensesFuture = _dbHelper.getExpenses();
+      });
+    }
   }
 
   @override
@@ -101,23 +117,61 @@ class _HomeGastosPageState extends State<HomeGastosPage> {
                           style: TextStyle(color: Colors.grey),
                         ),
 
-                        Card(
-                          child: ListTile(
-                            title: Text(
-                              "Cine",
-                              style: TextStyle(fontWeight: .bold),
-                            ),
-                            subtitle: Text("2026-10-10"),
-                            trailing: Text(
-                              "S/ 12.0",
-                              style: TextStyle(fontSize: 16),
-                            ),
-
-                            leading: Image.asset(
-                              "assets/icons/bancos.webp",
-                              width: 40,
-                              height: 40,
-                            ),
+                        Expanded(
+                          child: FutureBuilder<List<Expense>>(
+                            future: _expensesFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Center(
+                                  child: Text(
+                                    "No se pudieron cargar los gastos: ${snapshot.error}",
+                                  ),
+                                );
+                              }
+                              if (!snapshot.hasData) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              }
+                              final expenses = snapshot.data!;
+                              if (expenses.isEmpty) {
+                                return const Center(
+                                  child: Text(
+                                    "Aún no tienes gastos registrados.",
+                                  ),
+                                );
+                              }
+                              return ListView.builder(
+                                itemCount: expenses.length,
+                                itemBuilder: (context, index) {
+                                  final expense = expenses[index];
+                                  final date =
+                                      "${expense.date.year}-${expense.date.month.toString().padLeft(2, "0")}-${expense.date.day.toString().padLeft(2, "0")}";
+                                  return Card(
+                                    child: ListTile(
+                                      title: Text(
+                                        expense.title,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      subtitle: Text(
+                                        "$date · ${expense.categoryName}",
+                                      ),
+                                      trailing: Text(
+                                        "S/ ${expense.amount.toStringAsFixed(2)}",
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                      leading: Image.asset(
+                                        "assets/icons/${expense.categoryImage}.webp",
+                                        width: 40,
+                                        height: 40,
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ),
                       ],
