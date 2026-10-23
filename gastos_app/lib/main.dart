@@ -5,34 +5,37 @@ import 'package:gastos_app/pages/home_gastos_page.dart';
 import 'package:gastos_app/pages/home_page.dart';
 import 'package:gastos_app/provider_example/pages/cart_page.dart';
 import 'package:gastos_app/provider_example/pages/counter_page.dart';
+import 'package:gastos_app/provider_example/pages/products_page.dart';
 import 'package:gastos_app/provider_example/pages/provider_page.dart';
+import 'package:gastos_app/provider_example/providers/cart_provider.dart';
 import 'package:gastos_app/provider_example/providers/counter_provider.dart';
 import 'package:provider/provider.dart';
 
 // EJEMPLO PARA PROVIDER 1
+// void main() {
+//   runApp(
+//     ChangeNotifierProvider(
+//       create: (context) => CartProvider(),
+//       child: MaterialApp(
+//         debugShowCheckedModeBanner: false,
+//         home: ProductsPage(),
+//       ),
+//     ),
+//   );
+// }
+
+// Ejemplo con multiples providers
 void main() {
   runApp(
-    // MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   home: HomeGastosPage(),
-
-    //   // Delegados de localización
-    //   localizationsDelegates: [
-    //     S.delegate,
-    //     GlobalMaterialLocalizations.delegate,
-    //     GlobalWidgetsLocalizations.delegate,
-    //     GlobalCupertinoLocalizations.delegate,
-    //   ],
-    //   // Los idiomas soportados por el app
-    //   supportedLocales: S.delegate.supportedLocales,
-    // ),
-    ChangeNotifierProvider(
-      create: (context) => CounterProvider(),
-      // child: MaterialApp(
-      //   debugShowCheckedModeBanner: false,
-      //   home: CounterPage(),
-      // ),
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: CartPage()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CounterProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
+      ],
+      child: MaterialApp(
+        home: ProductsPage(),
+        debugShowCheckedModeBanner: false,
+      ),
     ),
   );
 }
@@ -83,8 +86,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomeGastosPage(),
       home: ProviderPage(),
+      // home: HomeGastosPage(),
       locale: _locale,
       // Delegados de localización
       localizationsDelegates: [
