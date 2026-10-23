@@ -14,6 +14,7 @@ class _HomeGastosPageState extends State<HomeGastosPage> {
   void showRegisterModal() {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (context) {
         return RegisterModalWidget();
       },

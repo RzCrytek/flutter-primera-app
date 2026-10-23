@@ -25,41 +25,41 @@ import 'package:provider/provider.dart';
 // }
 
 // Ejemplo con multiples providers
-void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => CounterProvider()),
-        ChangeNotifierProvider(create: (context) => CartProvider()),
-      ],
-      child: MaterialApp(
-        home: ProductsPage(),
-        debugShowCheckedModeBanner: false,
-      ),
-    ),
-  );
-}
-
-// EJEMPLO PARA FLUTTER INTL INICIAL
 // void main() {
 //   runApp(
-//     // MaterialApp(
-//     //   debugShowCheckedModeBanner: false,
-//     //   home: HomeGastosPage(),
-
-//     //   // Delegados de localización
-//     //   localizationsDelegates: [
-//     //     S.delegate,
-//     //     GlobalMaterialLocalizations.delegate,
-//     //     GlobalWidgetsLocalizations.delegate,
-//     //     GlobalCupertinoLocalizations.delegate,
-//     //   ],
-//     //   // Los idiomas soportados por el app
-//     //   supportedLocales: S.delegate.supportedLocales,
-//     // ),
-//     MyApp(),
+//     MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(create: (context) => CounterProvider()),
+//         ChangeNotifierProvider(create: (context) => CartProvider()),
+//       ],
+//       child: MaterialApp(
+//         home: ProductsPage(),
+//         debugShowCheckedModeBanner: false,
+//       ),
+//     ),
 //   );
 // }
+
+// EJEMPLO PARA FLUTTER INTL INICIAL
+void main() {
+  runApp(
+    // MaterialApp(
+    //   debugShowCheckedModeBanner: false,
+    //   home: HomeGastosPage(),
+
+    //   // Delegados de localización
+    //   localizationsDelegates: [
+    //     S.delegate,
+    //     GlobalMaterialLocalizations.delegate,
+    //     GlobalWidgetsLocalizations.delegate,
+    //     GlobalCupertinoLocalizations.delegate,
+    //   ],
+    //   // Los idiomas soportados por el app
+    //   supportedLocales: S.delegate.supportedLocales,
+    // ),
+    MyApp(),
+  );
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -86,8 +86,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProviderPage(),
-      // home: HomeGastosPage(),
+      // home: ProviderPage(),
+      home: HomeGastosPage(),
       locale: _locale,
       // Delegados de localización
       localizationsDelegates: [

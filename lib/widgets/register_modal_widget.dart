@@ -75,6 +75,7 @@ class _RegisterModalWidgetState extends State<RegisterModalWidget> {
       width: double.infinity,
       padding: EdgeInsets.all(16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text("Registra tu pago", style: TextStyle(fontSize: 22)),
           SizedBox(height: 12),
